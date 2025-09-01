@@ -11,4 +11,19 @@ public class HelloWorldRestController {
     public String sayHello(){
         return "Hello World";
     }
+
+    @GetMapping("/post")
+    public String writePost(){
+        return "Wanna write a post?";
+    }
+
+    @GetMapping("/put")
+    public String writePut(){
+        return "Hey Put Me Here!!!";
+    }
+
+    @GetMapping("/get")
+    public String readGet(){
+        return "What do you want to get???";
+    }
 }
