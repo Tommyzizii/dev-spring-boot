@@ -1,0 +1,28 @@
+# macOS
+.DS_Store
+.AppleDouble
+.LSOverride
+Icon?
+._*
+.Spotlight-V100
+.Trashes
+
+# IntelliJ / JetBrains
+.idea/
+*.iml
+*.iws
+*.ipr
+out/
+
+# VS Code (if you use it)
+.vscode/
+
+# Java / Maven
+target/
+*.class
+*.log
+hs_err_pid*
+replay_pid*
+
+# Keep these tracked (DO NOT ignore)
+# .mvn/ and mvnw scripts should stay in Git
