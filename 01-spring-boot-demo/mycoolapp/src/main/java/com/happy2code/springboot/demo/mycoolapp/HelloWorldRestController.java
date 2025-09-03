@@ -27,5 +27,9 @@ public class HelloWorldRestController {
         return "What do you want to get???";
     }
 
+    @GetMapping("/delete")
+    public String getDelete(){
+        return "Delete!!!!";
+    }
 
 }
