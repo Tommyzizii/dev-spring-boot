@@ -32,4 +32,16 @@ public class HelloWorldRestController {
         return "Delete!!!!";
     }
 
+    @GetMapping("/workout")
+    public String doWorkout(){
+        return "Run";
+    }
+
+    @GetMapping("/fortune")
+    public String luckyDay(){
+        return "Your Day";
+    }
+
+
+
 }
