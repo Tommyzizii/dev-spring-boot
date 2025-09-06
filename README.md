@@ -66,6 +66,37 @@ This repository will include projects that demonstrate **full CRUD operations, s
 
 ---
 
+## 💻 How To Run
+
+### 🚀 Using Maven Wrapper (no need to install Maven globally)
+If your project includes the Maven Wrapper (`mvnw`, `mvnw.cmd`, `.mvn/`):
+
+```bash
+# Step 1: Build the project
+./mvnw package
+
+# Step 2: Run the application
+./mvnw spring-boot:run
+# OR
+java -jar target/<your-app-name>.jar
+```
+
+### 🚀 Using Installed Maven
+If you already have Maven installed on your system:
+
+```bash
+# Step 1: Build the project
+mvn package
+
+# Step 2: Run the application
+mvn spring-boot:run
+# OR
+java -jar target/<your-app-name>.jar
+```
+
+         
+---
+
 ## ⚠️ Disclaimer
 
 This repository is for educational purposes only. Code may be experimental and is meant for learning and practice, not production use.
