@@ -5,12 +5,6 @@ The goal is to understand **modern Spring Boot development** using Java configur
 
 ---
 
-Instructor - Chad Darby(Udemy)
-
-Github - darbyluv2code
-
----
-
 ## 📚 Topics Covered
 
 ### Core Spring Boot & Framework Concepts
