@@ -60,6 +60,13 @@ This repository will include projects that demonstrate **full CRUD operations, s
 
 ---
 
+## 🛣️ Course Pathway
+- Frontend → Angular  
+- Backend → Java SpringBoot  
+- Full-stack exploration → Combine both worlds
+
+---
+
 ## 💻 How To Run
 
 ### 🚀 Using Maven Wrapper (no need to install Maven globally)
