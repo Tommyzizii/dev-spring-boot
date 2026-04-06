@@ -21,5 +21,11 @@ public class DemoController {
         return myCoach.getDailyWorkout();
     }
 
+    @GetMapping("/dailydietplan")
+    public String getDailyDietPlan()
+    {
+        return myCoach.getDailyWorkout();
+    }
+
 
 }
