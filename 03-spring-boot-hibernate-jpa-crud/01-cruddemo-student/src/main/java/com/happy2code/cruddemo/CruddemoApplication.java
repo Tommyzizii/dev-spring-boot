@@ -27,17 +27,19 @@ public class CruddemoApplication {
 
 	public void menu(StudentDao studentDao) {
 
-		System.out.println("Accessing Database.....");
-
 		int choice = 0;
 
 		while (choice != 5) {
 
+			System.out.println("Accessing Database.....");
+			System.out.println("########################");
+			System.out.println("Menu:");
 			System.out.println("1. Create Student");
 			System.out.println("2. Read Student");
 			System.out.println("3. Update Student");
 			System.out.println("4. Delete Student");
 			System.out.println("5. Exit");
+			System.out.println("########################");
 
 			choice = scanner.nextInt();
 
@@ -45,7 +47,7 @@ public class CruddemoApplication {
 				createStudent(studentDao);
 			}
 			else if (choice == 2) {
-
+				readStudent(studentDao);
 			}
 			else if (choice == 3) {
 
@@ -83,5 +85,26 @@ public class CruddemoApplication {
 
 		System.out.println("Student Saved Successfully.....");
 		System.out.println("Generating Student ID: " + tempStudent.getId());
+		System.out.println();
+	}
+
+	private void readStudent(StudentDao studentDao)
+	{
+		System.out.println("Reading Student.....");
+
+		System.out.println("Enter Student ID: ");
+		int id = scanner.nextInt();
+
+		Student student = studentDao.findById(id);
+
+		if(student == null) {
+			System.out.println("Student not found.....");
+				return;
+		}
+
+		System.out.println("Student Details: " + student.toString());
+		System.out.println();
+
+
 	}
 }
