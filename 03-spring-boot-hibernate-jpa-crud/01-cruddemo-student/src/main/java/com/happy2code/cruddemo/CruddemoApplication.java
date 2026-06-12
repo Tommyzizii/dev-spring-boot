@@ -7,6 +7,7 @@ import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
 import org.springframework.context.annotation.Bean;
 
+import java.util.List;
 import java.util.Scanner;
 
 @SpringBootApplication
@@ -33,12 +34,12 @@ public class CruddemoApplication {
 
 			System.out.println("Accessing Database.....");
 			System.out.println("########################");
-			System.out.println("Menu:");
-			System.out.println("1. Create Student");
-			System.out.println("2. Read Student");
-			System.out.println("3. Update Student");
-			System.out.println("4. Delete Student");
-			System.out.println("5. Exit");
+			System.out.println("	Menu:");
+			System.out.println("	1. Create Student	");
+			System.out.println("	2. Read Student	");
+			System.out.println("	3. Update Student	");
+			System.out.println("	4. Delete Student	");
+			System.out.println("	5. Exit	");
 			System.out.println("########################");
 
 			choice = scanner.nextInt();
@@ -47,9 +48,10 @@ public class CruddemoApplication {
 				createStudent(studentDao);
 			}
 			else if (choice == 2) {
-				readStudent(studentDao);
+				readMenu(studentDao);
 			}
 			else if (choice == 3) {
+
 
 			}
 			else if (choice == 4) {
@@ -88,7 +90,58 @@ public class CruddemoApplication {
 		System.out.println();
 	}
 
-	private void readStudent(StudentDao studentDao)
+	public void readMenu(StudentDao studentDao){
+
+		String option = "0";
+
+		while (option != "2.6"){
+
+			System.out.println("#########################################");
+			System.out.println("	2.1. Read ALL Student");
+			System.out.println("	2.2. Read Student by ID");
+			System.out.println("	2.3. Read Student by Email");
+			System.out.println("	2.4. Read Student by First Name");
+			System.out.println("	2.5. Read Student by Last Name");
+			System.out.println("	2.6. Back to Main Menu");
+			System.out.println("#########################################");
+
+			option = scanner.next();
+
+
+			if(option == "2.1") {
+				readAllStudents(studentDao);
+			}
+			else if(option == "2.2"){
+				readStudentById(studentDao);
+			}
+			else if(option == "2.3"){
+				readStudentByEmail(studentDao);
+			}
+			else if(option == "2.4"){
+				readStudentByFirstName(studentDao);
+			}
+			else if(option == "2.5"){
+				readStudentByLastName(studentDao);
+			}
+			else if(option == "2.6"){
+				return;
+			}
+		}
+
+	}
+
+	private void readAllStudents(StudentDao studentDao) {
+		System.out.println("Reading Student.....");
+
+		List<Student> students = studentDao.findAll();
+
+		for(Student theStudent : students){
+			System.out.println("Student Details: " + theStudent.toString());
+		}
+	}
+
+
+	private void readStudentById(StudentDao studentDao)
 	{
 		System.out.println("Reading Student.....");
 
@@ -104,7 +157,25 @@ public class CruddemoApplication {
 
 		System.out.println("Student Details: " + student.toString());
 		System.out.println();
+	}
 
+	private void readStudentByEmail(StudentDao studentDao) {
+		System.out.println("Reading Student.....");
 
+		System.out.println("Enter Student Email: ");
+		scanner.nextLine();
+		String email = scanner.nextLine();
+
+		List<Student> students = studentDao.findAllStudentsById(email);
+		for (Student theStudent: students){
+			System.out.println("Student Details: " + theStudent.toString());
+		}
+
+	}
+
+	private void readStudentByFirstName(StudentDao studentDao) {
+	}
+
+	private void readStudentByLastName(StudentDao studentDao) {
 	}
 }
