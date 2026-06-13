@@ -16,6 +16,20 @@ public class CruddemoApplication {
 
 	Scanner scanner = new Scanner(System.in);
 
+	// ── ANSI styles ──────────────────────────────────────────
+	static final String RESET  = "\033[0m";
+	static final String BOLD   = "\033[1m";
+	static final String GREEN  = "\033[0;32m";
+	static final String CYAN   = "\033[0;36m";
+	static final String YELLOW = "\033[0;33m";
+	static final String RED    = "\033[0;31m";
+	static final String PURPLE = "\033[0;35m";
+	static final String GRAY   = "\033[0;90m";
+
+	static void line()  { System.out.println(GRAY + "  ────────────────────────────────────────" + RESET); }
+	static void blank() { System.out.println(); }
+	// ─────────────────────────────────────────────────────────
+
 	public static void main(String[] args) {
 		SpringApplication.run(CruddemoApplication.class, args);
 	}
@@ -33,16 +47,20 @@ public class CruddemoApplication {
 
 		while (choice != 5) {
 
-			System.out.println("Accessing Database.....");
-			System.out.println("########################");
-			System.out.println("	Menu:");
-			System.out.println("	1. Create Student	");
-			System.out.println("	2. Read Student	");
-			System.out.println("	3. Update Student	");
-			System.out.println("	4. Delete Student	");
-			System.out.println("	5. Delete All Students	");
-			System.out.println("	6. Exit	");
-			System.out.println("########################");
+			blank();
+			System.out.println(GRAY + "  ╔══════════════════════════════════════╗" + RESET);
+			System.out.println(GRAY + "  ║  " + CYAN + BOLD + "Accessing Database....." + RESET + GRAY + "             ║" + RESET);
+			System.out.println(GRAY + "  ╠══════════════════════════════════════╣" + RESET);
+			System.out.println(GRAY + "  ║  " + PURPLE + BOLD + "Menu:" + RESET + GRAY + "                               ║" + RESET);
+			System.out.println(GRAY + "  ║  " + CYAN + "1." + RESET + " Create Student" + GRAY + "                   ║" + RESET);
+			System.out.println(GRAY + "  ║  " + CYAN + "2." + RESET + " Read Student" + GRAY + "                     ║" + RESET);
+			System.out.println(GRAY + "  ║  " + CYAN + "3." + RESET + " Update Student" + GRAY + "                   ║" + RESET);
+			System.out.println(GRAY + "  ║  " + RED  + "4." + RESET + " Delete Student" + GRAY + "                   ║" + RESET);
+			System.out.println(GRAY + "  ║  " + RED  + "5." + RESET + " Delete All Students" + GRAY + "              ║" + RESET);
+			System.out.println(GRAY + "  ║  " + GRAY + "6. Exit                             ║" + RESET);
+			System.out.println(GRAY + "  ╚══════════════════════════════════════╝" + RESET);
+			blank();
+			System.out.print(YELLOW + "  ▶  " + RESET);
 
 			choice = scanner.nextInt();
 
@@ -74,45 +92,54 @@ public class CruddemoApplication {
 
 	private void createStudent(StudentDao studentDao) {
 
-		System.out.println("Creating Student.....");
+		blank();
+		line();
+		System.out.println(PURPLE + BOLD + "  Creating Student....." + RESET);
+		line();
 
-		System.out.println("Enter Student First Name: ");
+		System.out.print(CYAN + "  Enter Student First Name: " + RESET);
 		String firstName = scanner.next();
 
-		System.out.println("Enter Student Last Name: ");
+		System.out.print(CYAN + "  Enter Student Last Name: " + RESET);
 		String lastName = scanner.next();
 
-		System.out.println("Enter Student Email: ");
+		System.out.print(CYAN + "  Enter Student Email: " + RESET);
 		String email = scanner.next();
 
 		Student tempStudent = new Student(firstName, lastName, email);
 
-		System.out.println("Saving Student.....");
+		System.out.println(GRAY + "  Saving Student....." + RESET);
 		studentDao.save(tempStudent);
 
-		System.out.println("Student Saved Successfully.....");
-		System.out.println("Generating Student ID: " + tempStudent.getId());
-		System.out.println();
+		blank();
+		System.out.println(GREEN + "  ✔  Student Saved Successfully!" + RESET);
+		System.out.println(GREEN + "  ✔  Generating Student ID: " + YELLOW + BOLD + tempStudent.getId() + RESET);
+		blank();
 	}
 
 	public void readMenu(StudentDao studentDao){
 
 		String option = "0";
 
-		while (!option.equals("2.6")) {
+		while (!option.equals("2.6")){
 
-			System.out.println("#########################################");
-			System.out.println("	2.1. Read ALL Student");
-			System.out.println("	2.2. Read Student by ID");
-			System.out.println("	2.3. Read Student by Email");
-			System.out.println("	2.4. Read Student by First Name");
-			System.out.println("	2.5. Read Student by Last Name");
-			System.out.println("	2.6. Back to Main Menu");
-			System.out.println("#########################################");
+			blank();
+			line();
+			System.out.println(PURPLE + BOLD + "  Read Menu:" + RESET);
+			line();
+			System.out.println(CYAN + "  2.1." + RESET + " Read ALL Student");
+			System.out.println(CYAN + "  2.2." + RESET + " Read Student by ID");
+			System.out.println(CYAN + "  2.3." + RESET + " Read Student by Email");
+			System.out.println(CYAN + "  2.4." + RESET + " Read Student by First Name");
+			System.out.println(CYAN + "  2.5." + RESET + " Read Student by Last Name");
+			System.out.println(GRAY + "  2.6. Back to Main Menu" + RESET);
+			blank();
+			System.out.print(YELLOW + "  ▶  " + RESET);
 
 			option = scanner.next();
 
-			if(option.equals("2.1")){
+
+			if(option.equals("2.1")) {
 				readAllStudents(studentDao);
 			}
 			else if(option.equals("2.2")){
@@ -131,49 +158,60 @@ public class CruddemoApplication {
 				return;
 			}
 		}
+
 	}
 
 	private void readAllStudents(StudentDao studentDao) {
-		System.out.println("Reading Student.....");
+		blank();
+		line();
+		System.out.println(PURPLE + BOLD + "  Reading Student....." + RESET);
+		line();
 
 		List<Student> students = studentDao.findAll();
 
 		for(Student theStudent : students){
-			System.out.println("Student Details: " + theStudent.toString());
+			System.out.println(GREEN + "  • " + RESET + "Student Details: " + theStudent.toString());
 		}
+		blank();
 	}
 
 
 	private void readStudentById(StudentDao studentDao)
 	{
-		System.out.println("Reading Student.....");
+		blank();
+		line();
+		System.out.println(PURPLE + BOLD + "  Reading Student....." + RESET);
+		line();
 
-		System.out.println("Enter Student ID: ");
+		System.out.print(CYAN + "  Enter Student ID: " + RESET);
 		int id = scanner.nextInt();
 
 		Student student = studentDao.findById(id);
 
 		if(student == null) {
-			System.out.println("Student not found.....");
+			System.out.println(RED + "  ✖  Student not found....." + RESET);
 				return;
 		}
 
-		System.out.println("Student Details: " + student.toString());
-		System.out.println();
+		System.out.println(GREEN + "  ✔  Student Details: " + RESET + student.toString());
+		blank();
 	}
 
 	private void readStudentByEmail(StudentDao studentDao) {
-		System.out.println("Reading Student.....");
+		blank();
+		line();
+		System.out.println(PURPLE + BOLD + "  Reading Student....." + RESET);
+		line();
 
-		System.out.println("Enter Student Email: ");
+		System.out.print(CYAN + "  Enter Student Email: " + RESET);
 		scanner.nextLine();
 		String email = scanner.nextLine();
 
 		List<Student> students = studentDao.findAllStudentsById(email);
 		for (Student theStudent: students){
-			System.out.println("Student Details: " + theStudent.toString());
+			System.out.println(GREEN + "  • " + RESET + "Student Details: " + theStudent.toString());
 		}
-
+		blank();
 	}
 
 	private void readStudentByFirstName(StudentDao studentDao) {
@@ -183,34 +221,48 @@ public class CruddemoApplication {
 	}
 
 	private void updateStudent(StudentDao studentDao){
-		System.out.println("Getting Student.....");
+		blank();
+		line();
+		System.out.println(PURPLE + BOLD + "  Getting Student....." + RESET);
+		line();
 		
-		System.out.println("Enter Student ID: ");
+		System.out.print(CYAN + "  Enter Student ID: " + RESET);
 		int id = scanner.nextInt();
 		Student student = studentDao.findById(id);
 		
-		System.out.println("Enter Student First Name to Update: ");
+		System.out.print(CYAN + "  Enter Student First Name to Update: " + RESET);
 		String firstName = scanner.next();
 		student.setFirstName(firstName);
 		
 		studentDao.updateStudent(student);
 
-		System.out.println("Updated Student Details: " + student.toString());
-		System.out.println("Student Updated Successfully.....");
-
+		blank();
+		System.out.println(GREEN + "  ✔  Updated Student Details: " + RESET + student.toString());
+		System.out.println(GREEN + "  ✔  Student Updated Successfully!" + RESET);
+		blank();
 	}
 
 	private void deleteStudent(StudentDao studentDao){
-		System.out.println("Getting Student.....");
+		blank();
+		line();
+		System.out.println(RED + BOLD + "  Getting Student....." + RESET);
+		line();
 		
-		System.out.println("Enter Student ID: ");
+		System.out.print(CYAN + "  Enter Student ID: " + RESET);
 		int id = scanner.nextInt();
 		studentDao.deleteStudent(id);
-		System.out.println("Student Deleted Successfully.....");
+		System.out.println(GREEN + "  ✔  Student Deleted Successfully!" + RESET);
+		blank();
 	}
 
 	private void deleteAll(StudentDao studentDao){
+		blank();
+		line();
+		System.out.println(RED + BOLD + "  ⚠  Deleting All Students....." + RESET);
+		line();
+
 		int numRowsDeleted = studentDao.deleteAll();
-		System.out.println("Deleted " + numRowsDeleted + " students.");
+		System.out.println(GREEN + "  ✔  Deleted " + YELLOW + BOLD + numRowsDeleted + RESET + GREEN + " students." + RESET);
+		blank();
 	}
 }
