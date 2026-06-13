@@ -40,7 +40,8 @@ public class CruddemoApplication {
 			System.out.println("	2. Read Student	");
 			System.out.println("	3. Update Student	");
 			System.out.println("	4. Delete Student	");
-			System.out.println("	5. Exit	");
+			System.out.println("	5. Delete All Students	");
+			System.out.println("	6. Exit	");
 			System.out.println("########################");
 
 			choice = scanner.nextInt();
@@ -58,7 +59,10 @@ public class CruddemoApplication {
 			else if (choice == 4) {
 				deleteStudent(studentDao);
 			}
-			else if (choice == 5) {
+			else if (choice == 5){
+				deleteAll(studentDao);
+			}
+			else if (choice == 6) {
 				System.out.println("Exiting.....");
 				break;
 			}
@@ -127,7 +131,6 @@ public class CruddemoApplication {
 				return;
 			}
 		}
-
 	}
 
 	private void readAllStudents(StudentDao studentDao) {
@@ -206,4 +209,8 @@ public class CruddemoApplication {
 		System.out.println("Student Deleted Successfully.....");
 	}
 
+	private void deleteAll(StudentDao studentDao){
+		int numRowsDeleted = studentDao.deleteAll();
+		System.out.println("Deleted " + numRowsDeleted + " students.");
+	}
 }
