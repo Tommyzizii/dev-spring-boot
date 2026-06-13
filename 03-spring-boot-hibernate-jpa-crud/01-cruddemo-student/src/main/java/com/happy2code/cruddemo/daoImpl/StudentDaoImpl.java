@@ -1,14 +1,16 @@
 package com.happy2code.cruddemo.daoImpl;
 
-import com.happy2code.cruddemo.dao.StudentDao;
-import com.happy2code.cruddemo.entity.Student;
-import jakarta.persistence.EntityManager;
-import jakarta.persistence.TypedQuery;
+import java.util.List;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Repository;
 import org.springframework.transaction.annotation.Transactional;
 
-import java.util.List;
+import com.happy2code.cruddemo.dao.StudentDao;
+import com.happy2code.cruddemo.entity.Student;
+
+import jakarta.persistence.EntityManager;
+import jakarta.persistence.TypedQuery;
 
 @Repository
 public class StudentDaoImpl implements StudentDao {
@@ -42,11 +44,17 @@ public class StudentDaoImpl implements StudentDao {
     @Override
     public List<Student> findAllStudentsById(String email) {
 
-        TypedQuery<Student> theQuery = entityManager.createQuery("SELECT s FROM Student where s.email = :email", Student.class);
+        TypedQuery<Student> theQuery = entityManager.createQuery("SELECT s FROM Student s WHERE s.email = :email", Student.class);
 
         theQuery.setParameter("email", email);
 
         return theQuery.getResultList();
+    }
+
+    @Override
+    @Transactional
+    public Student updateStudent(Student theStudent){
+        return entityManager.merge(theStudent);
     }
 
 

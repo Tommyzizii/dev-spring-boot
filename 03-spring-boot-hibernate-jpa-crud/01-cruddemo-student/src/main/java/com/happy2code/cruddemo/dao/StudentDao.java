@@ -1,8 +1,8 @@
 package com.happy2code.cruddemo.dao;
 
-import com.happy2code.cruddemo.entity.Student;
-
 import java.util.List;
+
+import com.happy2code.cruddemo.entity.Student;
 
 public interface StudentDao {
 
@@ -13,4 +13,6 @@ public interface StudentDao {
     List<Student> findAll();
 
     List<Student> findAllStudentsById(String email);
+
+    Student updateStudent(Student theStudent);
 }

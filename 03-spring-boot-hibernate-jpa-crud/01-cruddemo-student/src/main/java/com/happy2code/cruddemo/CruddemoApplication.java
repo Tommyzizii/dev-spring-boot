@@ -1,14 +1,15 @@
 package com.happy2code.cruddemo;
 
-import com.happy2code.cruddemo.dao.StudentDao;
-import com.happy2code.cruddemo.entity.Student;
+import java.util.List;
+import java.util.Scanner;
+
 import org.springframework.boot.CommandLineRunner;
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
 import org.springframework.context.annotation.Bean;
 
-import java.util.List;
-import java.util.Scanner;
+import com.happy2code.cruddemo.dao.StudentDao;
+import com.happy2code.cruddemo.entity.Student;
 
 @SpringBootApplication
 public class CruddemoApplication {
@@ -51,7 +52,7 @@ public class CruddemoApplication {
 				readMenu(studentDao);
 			}
 			else if (choice == 3) {
-
+				updateStudent(studentDao);
 
 			}
 			else if (choice == 4) {
@@ -94,7 +95,7 @@ public class CruddemoApplication {
 
 		String option = "0";
 
-		while (option != "2.6"){
+		while (!option.equals("2.6")) {
 
 			System.out.println("#########################################");
 			System.out.println("	2.1. Read ALL Student");
@@ -107,23 +108,22 @@ public class CruddemoApplication {
 
 			option = scanner.next();
 
-
-			if(option == "2.1") {
+			if(option.equals("2.1")){
 				readAllStudents(studentDao);
 			}
-			else if(option == "2.2"){
+			else if(option.equals("2.2")){
 				readStudentById(studentDao);
 			}
-			else if(option == "2.3"){
+			else if(option.equals("2.3")){
 				readStudentByEmail(studentDao);
 			}
-			else if(option == "2.4"){
+			else if(option.equals("2.4")){
 				readStudentByFirstName(studentDao);
 			}
-			else if(option == "2.5"){
+			else if(option.equals("2.5")){
 				readStudentByLastName(studentDao);
 			}
-			else if(option == "2.6"){
+			else if(option.equals("2.6")){
 				return;
 			}
 		}
@@ -178,4 +178,23 @@ public class CruddemoApplication {
 
 	private void readStudentByLastName(StudentDao studentDao) {
 	}
+
+	private void updateStudent(StudentDao studentDao){
+		System.out.println("Getting Student.....");
+		
+		System.out.println("Enter Student ID: ");
+		int id = scanner.nextInt();
+		Student student = studentDao.findById(id);
+		
+		System.out.println("Enter Student First Name to Update: ");
+		String firstName = scanner.next();
+		student.setFirstName(firstName);
+		
+		studentDao.updateStudent(student);
+
+		System.out.println("Updated Student Details: " + student.toString());
+		System.out.println("Student Updated Successfully.....");
+
+	}
+
 }
