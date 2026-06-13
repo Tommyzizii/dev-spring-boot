@@ -56,7 +56,7 @@ public class CruddemoApplication {
 
 			}
 			else if (choice == 4) {
-
+				deleteStudent(studentDao);
 			}
 			else if (choice == 5) {
 				System.out.println("Exiting.....");
@@ -195,6 +195,15 @@ public class CruddemoApplication {
 		System.out.println("Updated Student Details: " + student.toString());
 		System.out.println("Student Updated Successfully.....");
 
+	}
+
+	private void deleteStudent(StudentDao studentDao){
+		System.out.println("Getting Student.....");
+		
+		System.out.println("Enter Student ID: ");
+		int id = scanner.nextInt();
+		studentDao.deleteStudent(id);
+		System.out.println("Student Deleted Successfully.....");
 	}
 
 }
