@@ -9,6 +9,8 @@ import com.happy2code.springboot.cruddemo.dao.EmployeeDAO;
 import com.happy2code.springboot.cruddemo.entity.Employee;
 import com.happy2code.springboot.cruddemo.service.EmployeeService;
 
+import jakarta.transaction.Transactional;
+
 @Service
 public class EmployeeServiceImpl implements EmployeeService{
 
@@ -22,6 +24,23 @@ public class EmployeeServiceImpl implements EmployeeService{
 	@Override
 	public List<Employee> findAll() {
 		return employeeDAO.findAll();
+	}
+
+	@Override
+	public Employee findById(int id) {
+		return employeeDAO.findById(id);
+	}
+
+	@Transactional
+	@Override
+	public Employee save(Employee theEmployee) {
+		return employeeDAO.save(theEmployee);
+	}
+
+	@Transactional
+	@Override
+	public void deleteById(int id) {
+		employeeDAO.deleteById(id);
 	}
 	
 	
