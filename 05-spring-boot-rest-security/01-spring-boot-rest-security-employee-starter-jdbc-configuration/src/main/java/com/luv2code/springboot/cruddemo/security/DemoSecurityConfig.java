@@ -41,6 +41,9 @@ public class DemoSecurityConfig {
 		return http.build();
 	}
 	
+	// BCrypt
+	// Modify DDL for password field, length should be 68
+	
 }
 
 
